@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete room</title>
+</head>
+<body>
+    Czy na pewno chcesz usunąć sale {{ room.name }}?
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" name="yes" value="Tak">
+        <input type="submit" name="no" value="Nie">
+    </form>
+</body>
+</html>

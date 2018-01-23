@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Rooms available:</h1>
+    <ul>
+        {% for room in rooms %}
+        <li>
+            <a href="{% url 'room_details' room_id=room.id %}">{{ room.name }}</a> -
+            <a href="{% url 'new_reservation' room_id=room.id %}">Zarezerwuj</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{% url 'all_rooms' %}">Powrot</a>
+</body>
+</html>

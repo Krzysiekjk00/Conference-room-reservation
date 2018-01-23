@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Rooms</title>
+</head>
+<body>
+    <h2>Search for free room</h2>
+    <form action="" method="GET">
+        {% csrf_token %}
+        <label>
+            Nazwa:
+            <input type="text" name="room_name">
+        </label>
+        <br>
+        <label>
+            Minimalna pojemnosc:
+            <input type="number" name="num_of_seats" min="2">
+        </label>
+        <br>
+        <label>
+            Obecnosc rzutnika:
+            <select name="beamer">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select>
+        </label>
+        <br>
+        <label>
+            Data spotkania:
+            <input type="date" min="{{ current_date }}" name="date">
+        </label>
+        <br>
+        <input type="submit" name="search" value="szukaj">
+    </form>
+    <hr>
+    <h1>Conference rooms:</h1>
+    <ul>
+        {% for room in all_rooms %}
+        <li><a href="{% url 'room_details' room_id=room.id %}">{{ room.name }}</a>
+            <a href="{% url 'modify_room' id=room.id %}">Edytuj</a>
+            <a href="{% url 'delete_room' room_id=room.id %}">Usun</a>-
+            {% if room.is_currently_booked %}
+                zajeta
+            {% else %}
+                wolna
+            {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{% url 'new_room' %}">Dodaj nową salę</a>
+</body>
+</html>

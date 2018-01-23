@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding new room</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>
+            Nazwa:
+            <input type="text" name="room_name">
+        </label>
+        <br>
+        <label>
+            Liczba miejsc:
+            <input type="number" name="seat_nums">
+        </label>
+        <br>
+        <label>
+            Czy jest rzutnik:
+            <select name="beamer">
+                <option value="yes">Tak</option>
+                <option value="no">Nie</option>
+            </select>
+        </label>
+        <br>
+        <input type="submit" value="Zapisz">
+    </form>
+</body>
+</html>

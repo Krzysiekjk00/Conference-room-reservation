@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New reservation</title>
+</head>
+<body>
+    <label>
+        Obecne rezerwacje:
+        {% if bookings.all %}
+            <ul>
+            {% for booking in bookings.all %}
+                <li> {{ booking.date }} </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            Brak
+        {% endif %}
+    </label>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>
+            Data:
+            <input type="date" min={{ current_date }} name="date">
+        </label>
+        <br>
+        <label>
+            Osoba rezerwujaca:
+            <input type="text" name="person">
+        </label>
+        <br>
+        <label>
+            Komentarz:
+            <textarea row="10" cols="30" name="comment"></textarea>
+        </label>
+        <br>
+        <input type="submit" value="Rezerwuj">
+    </form>
+</body>
+</html>

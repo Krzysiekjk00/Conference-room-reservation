@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room details</title>
+</head>
+<body>
+    <h2>Room details:</h2>
+    <label>
+        Nazwa pokoju:
+        {{ room.name }}
+    </label>
+    <br>
+    <label>
+        Pojemnosc:
+        {{ room.num_of_seats }}
+    </label>
+    <br>
+    <label>
+        Czy ma rzutnik:
+        {% if room.is_beamer == True %}
+            Tak
+        {% else %}
+            Nie
+        {% endif %}
+    </label>
+    <br>
+    <label>
+        Obecne rezerwacje:
+        {% if bookings.all %}
+            <ul>
+            {% for booking in bookings.all %}
+                <li> {{ booking.date }} </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            Brak
+        {% endif %}
+    </label>
+    <br>
+    <a href="{% url 'new_reservation' room_id=room.id %}">Zarezerwuj</a>
+    <br>
+    <a href="{% url 'all_rooms' %}"> Powrot do listy sal</a>
+</body>
+</html>
